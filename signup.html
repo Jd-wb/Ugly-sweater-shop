@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - Ugly Sweater Shop</title>
+  <link rel="stylesheet" href="css/signup.css">
+</head>
+<body>
+
+
+  <!-- Sign-Up Section -->
+  <main>
+    <div class="signup-container">
+      <h2>Create an Account</h2>
+      <form id="sign-up-form">
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+
+        <div class="form-group">
+          <label for="confirm-password">Confirm Password:</label>
+          <input type="password" id="confirm-password" name="confirm-password" required>
+        </div>
+
+        <button type="submit" class="submit-button">Sign Up</button>
+      </form>
+
+      <p id="error-message"></p>
+      <p class="footer-text">Already have an account? <a href="signin.html">Sign In</a></p>
+    </div>
+  </main>
+
+  <!-- Footer Section -->
+  <footer>
+    <p></p>
+  </footer>
+
+  <!-- Firebase Scripts -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+
+    // Your Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyAIUZGbAMg4R3OBnu0EwvPkrZwM0EjUa6Q",
+      authDomain: "uglysweaterdesign.firebaseapp.com",
+      projectId: "uglysweaterdesign",
+      storageBucket: "uglysweaterdesign.firebasestorage.app",
+      messagingSenderId: "430932114404",
+      appId: "1:430932114404:web:459ab8dffdbb947a2565f1",
+      measurementId: "G-323DL413BB"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const signUpForm = document.getElementById("sign-up-form");
+    const errorMessage = document.getElementById("error-message");
+
+    signUpForm.addEventListener("submit", (e) => {
+      e.preventDefault(); // Prevent form submission
+
+      const email = e.target.email.value;
+      const password = e.target.password.value;
+      const confirmPassword = e.target["confirm-password"].value;
+
+      // Check if password and confirm password match
+      if (password !== confirmPassword) {
+        errorMessage.textContent = "Passwords do not match.";
+        return;
+      }
+
+      // Create user with Firebase Auth
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // User created successfully
+          window.location.href = "signin.html"; // Redirect to sign-in page
+        })
+        .catch((error) => {
+          // Handle Errors here
+          const errorMessageText = error.message;
+          errorMessage.textContent = `Error: ${errorMessageText}`; // Display error message
+        });
+    });
+  </script>
+
+</body>
+</html>

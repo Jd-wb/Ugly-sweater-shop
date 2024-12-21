@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In - Ugly Sweater Shop</title>
+  <link rel="stylesheet" href="css/signin.css">
+</head>
+<body>
+  <!-- Falling Snow Effect -->
+  <div class="snowflakes" aria-hidden="true"></div>
+
+  <!-- Sign In Section -->
+  <div class="auth-container">
+    <div class="form-container">
+      <h1 class="form-title">🎄 Welcome Back!</h1>
+      <form id="signInForm">
+        <div class="input-group">
+          <label for="email">✉️ Email</label>
+          <input type="email" id="email" placeholder="Enter your email" required>
+        </div>
+        <div class="input-group">
+          <label for="password">🔒 Password</label>
+          <input type="password" id="password" placeholder="Enter your password" required>
+        </div>
+        <button type="submit" class="submit-button">🎅 Sign In</button>
+      </form>
+      <p class="switch-auth">Don't have an account? <a href="signup.html">Sign Up</a></p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2024 Ugly Sweater Shop. All Rights Reserved.</p>
+  </footer>
+
+  <script src="js/signin.js"></script>
+  <script src="js/snow.js"></script>
+
+  <script type="module">
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+
+    // Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyAIUZGbAMg4R3OBnu0EwvPkrZwM0EjUa6Q",
+      authDomain: "uglysweaterdesign.firebaseapp.com",
+      projectId: "uglysweaterdesign",
+      storageBucket: "uglysweaterdesign.firebasestorage.app",
+      messagingSenderId: "430932114404",
+      appId: "1:430932114404:web:459ab8dffdbb947a2565f1",
+      measurementId: "G-323DL413BB"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const signInForm = document.getElementById("signInForm");
+
+    signInForm.addEventListener("submit", (e) => {
+      e.preventDefault(); // Prevent form submission
+
+      const email = e.target.email.value;
+      const password = e.target.password.value;
+
+      // Sign in with Firebase Auth
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // User signed in successfully
+          window.location.href = "index.html"; // Redirect to index.html
+        })
+        .catch((error) => {
+          // Handle Errors here
+          const errorMessage = error.message;
+          alert(`Error: ${errorMessage}`); // Display error message
+        });
+    });
+  </script>
+</body>
+</html>

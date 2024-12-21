@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us</title>
+  <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+      background-color: #ff9260;
+      padding: 10px 20px;
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    nav ul li {
+      margin-right: 20px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav ul li a:hover {
+      text-decoration: underline;
+    }
+
+    .contact-form {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      margin: 50px auto;
+    }
+
+    h2 {
+      text-align: center;
+      color: #ff9469;
+    }
+
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0 15px 0;
+      border: 1px solid #ffa571;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .error {
+      color: red;
+    }
+
+    .success {
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="process.html">Process</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Contact Form -->
+  <div class="contact-form">
+    <h3>Our team of elve- I mean employees are trying to make contact with you and the north pole but our services are down temporarily 🎅</h3>
+    <form id="emailForm">
+      <label for="from_name">Your Name:</label>
+      <input type="text" id="from_name" name="from_name" required>
+
+      <label for="to_name">Recipient's Name:</label>
+      <input type="text" id="to_name" name="to_name" required>
+
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" required></textarea>
+
+      <label for="reply_to">Your Email:</label>
+      <input type="email" id="reply_to" name="reply_to" required>
+
+      <button type="submit">Send Email</button>
+    </form>
+    <div id="responseMessage"></div>
+  </div>
+
+  <script type="text/javascript">
+    // Initialize EmailJS with your Public Key (User ID)
+    emailjs.init("YOUR_PUBLIC_KEY"); // Replace this with your actual Public Key (User ID)
+
+    // Function to send email
+    function sendEmail() {
+      const templateParams = {
+        from_name: document.getElementById("from_name").value,
+        to_name: document.getElementById("to_name").value,
+        message: document.getElementById("message").value,
+        reply_to: document.getElementById("reply_to").value,
+      };
+
+      emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", templateParams)
+        .then(function(response) {
+          console.log('Success:', response);
+          document.getElementById("responseMessage").innerHTML = "<p class='success'>Email sent successfully!</p>";
+        }, function(error) {
+          console.log('Failed:', error);
+          document.getElementById("responseMessage").innerHTML = "<p class='error'>Failed to send email. Please try again later.</p>";
+        });
+    }
+
+    // Event listener for form submission
+    document.getElementById("emailForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      sendEmail();
+    });
+  </script>
+
+</body>
+</html>
