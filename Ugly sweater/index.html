@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ugly Sweater Shop</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header>
+    <h1>Ugly Sweater Shop</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="process.html">Design Process</a>
+      <a href="contact.html">Contact</a>
+      <button id="sign-in-button" style="display:none;">Sign In</button>
+      <button id="sign-out-button" style="display:none;">Sign Out</button>
+    </nav>
+  </header>
+
+  <!-- Main Content Section -->
+  <main>
+
+    <h2>Welcome to the Ugly Sweater Shop!</h2>
+    <p class="centered-description" ></p>
+     to the Ugly Sweater Shop — the ultimate destination for holiday fun, where humor and festive spirit collide in the most outrageous, eye-catching sweaters you’ve ever seen! Our collection is designed for those who want to stand out, spread laughter, and be the center of attention at every holiday gathering.
+
+        From quirky patterns to hilarious designs, each sweater is crafted with cozy, high-quality materials that promise both comfort and style. Whether you're hosting a lively holiday party, attending a fun office gathering, or simply want to make a statement, we've got the perfect sweater to fit the occasion.
+        
+        But it’s not just about looking great — it's about creating memories. Our exclusive collection is filled with playful designs that will spark conversations, laughs, and unforgettable moments. Whether you're pulling off a festive family photo or joining in on a spirited gift exchange, these sweaters are your ticket to making every celebration brighter.
+        
+        Why Choose Us?
+        
+        Unique Designs: No one else will have a sweater quite like yours. Our designs are fun, original, and guaranteed to turn heads.
+        Quality and Comfort: Made with soft, high-quality fabric, you'll stay cozy while looking fabulous.
+        Perfect for Any Occasion: Whether it’s a holiday party, Christmas morning, or a goofy gift exchange, our sweaters are perfect for all types of celebrations.
+        Affordable Fun: Who says style has to be expensive? Our sweaters offer both great quality and great value.
+        Step into the holiday spirit with our Ugly Sweater Shop collection. Shop now and get ready to make this holiday season unforgettable. Whether you're buying for yourself or looking for the perfect gift, our sweaters are a sure way to bring joy and laughter to your festivities!.</p>
+    <!-- Add other content here -->
+     
+  </main>
+
+  <!-- Footer Section -->
+  <footer>
+    <p>© 2024 Ugly Sweater Shop. All Rights Reserved.</p>
+  </footer>
+
+  <script type="module">
+    // Import the necessary Firebase functions
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+
+    // Firebase Configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAIUZGbAMg4R3OBnu0EwvPkrZwM0EjUa6Q",
+      authDomain: "uglysweaterdesign.firebaseapp.com",
+      projectId: "uglysweaterdesign",
+      storageBucket: "uglysweaterdesign.firebasestorage.app",
+      messagingSenderId: "430932114404",
+      appId: "1:430932114404:web:459ab8dffdbb947a2565f1",
+      measurementId: "G-323DL413BB"
+    };
+
+    // Initialize Firebase App
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // Get the elements for Sign In and Sign Out buttons
+    const signInButton = document.getElementById("sign-in-button");
+    const signOutButton = document.getElementById("sign-out-button");
+
+    // Monitor authentication state
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, hide sign-in button and show sign-out button
+        signInButton.style.display = "none";
+        signOutButton.style.display = "inline-block";
+      } else {
+        // User is signed out, show sign-in button
+        signInButton.style.display = "inline-block";
+        signOutButton.style.display = "none";
+      }
+    });
+
+    // Handle Sign Out action
+    signOutButton.addEventListener("click", () => {
+      signOut(auth).then(() => {
+        // Sign-out successful, reload the page to update the UI
+        window.location.reload();
+      }).catch((error) => {
+        console.error("Sign Out Error: ", error);
+      });
+    });
+
+    // Handle Sign In button click
+    signInButton.addEventListener("click", () => {
+      window.location.href = "signin.html"; // Redirect to Sign-In page
+    });
+  </script>
+
+</body>
+</html>

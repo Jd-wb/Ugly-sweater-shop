@@ -1,0 +1,132 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #fbd3e9, #bb377d); /* Pink gradient */
+    color: #333;
+}
+
+/* Centered Card Container */
+.signup-container {
+    width: 400px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Slightly larger shadow */
+    padding: 2.5rem; /* Increased padding for spacing */
+    text-align: center;
+    position: relative;
+}
+
+/* Welcome Title */
+.signup-container h2 {
+    font-size: 2rem; /* Increased font size for better readability */
+    font-weight: 600;
+    color: #bb377d;
+    margin-bottom: 1rem;
+}
+
+/* Icon for Visual Appeal */
+.signup-container .icon {
+    font-size: 2.5rem; /* Slightly larger icon */
+    color: #bb377d;
+    margin-bottom: 0.8rem; /* Adjusted margin */
+}
+
+/* Form Styling */
+.signup-container form {
+    margin-top: 1.5rem; /* Increased margin between title and form */
+}
+
+/* Form Groups */
+.signup-container .form-group {
+    margin-bottom: 1.5rem; /* Slightly more spacing between form fields */
+    text-align: left;
+}
+
+/* Label Styling */
+.signup-container label {
+    display: block;
+    font-size: 1rem; /* Increased label font size */
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+
+/* Input Fields */
+.signup-container input {
+    width: 100%;
+    padding: 1rem; /* Increased padding for input fields */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem; /* Slightly larger text inside input fields */
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.signup-container input:focus {
+    border-color: #bb377d;
+    outline: none;
+    box-shadow: 0 0 8px rgba(187, 55, 125, 0.3); /* Slightly larger shadow effect */
+}
+
+/* Button Styling */
+.signup-container .submit-button {
+    width: 100%;
+    padding: 1rem;
+    background-color: #bb377d;
+    color: #fff;
+    font-size: 1.1rem; /* Larger font size for button */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Added button hover effect */
+}
+
+.signup-container .submit-button:hover {
+    background-color: #992c63;
+    transform: translateY(-2px); /* Slight lifting effect on hover */
+}
+
+/* Footer Text */
+.signup-container .footer-text {
+    margin-top: 1.5rem;
+    font-size: 1rem; /* Increased font size for footer text */
+    color: #666;
+}
+
+.signup-container .footer-text a {
+    color: #bb377d;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.signup-container .footer-text a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 480px) {
+    .signup-container {
+        width: 90%;
+        padding: 1.8rem; /* Adjusted padding for smaller screens */
+    }
+
+    .signup-container h2 {
+        font-size: 1.6rem; /* Adjusted title size for smaller screens */
+    }
+
+    .signup-container input {
+        font-size: 0.9rem; /* Slightly smaller font inside input fields for smaller screens */
+    }
+
+    .signup-container .submit-button {
+        font-size: 1rem; /* Adjusted button font size */
+    }
+
+    .signup-container .footer-text {
+        font-size: 0.9rem; /* Adjusted footer text size */
+    }
+}
